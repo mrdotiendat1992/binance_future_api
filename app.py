@@ -10,7 +10,7 @@ exchange = ccxt.binance({
 app = Flask(__name__)
 CORS(app)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins="*",async_mode='eventlet')
+socketio = SocketIO(app)
 
 @app.route('/', methods=['GET']) 
 def get_market_data(): 
