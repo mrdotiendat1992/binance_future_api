@@ -16,13 +16,13 @@ socketio = SocketIO(app, cors_allowed_origins="*",async_mode='eventlet')
 def get_market_data(): 
     symbol = request.args.get('symbol', 'BTCUSDT') 
     data = exchange.fetch_order_book(symbol=symbol, params={'limit': 10})
-    return jsonify(    data = exchange.fetch_order_book(symbol=symbol, params={'limit': 10})
-) 
+    return jsonify(data)
 
 def background_thread(): 
     while True: 
         socketio.sleep(5) 
         data = exchange.fetch_order_book(symbol='BTCUSDT', params={'limit': 10}) 
+        print(data)
         socketio.emit('market_data', data) 
 
 @socketio.on('connect') 
